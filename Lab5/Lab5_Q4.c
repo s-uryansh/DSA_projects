@@ -182,4 +182,3 @@ int main(){
     printf("%s\n",postfix->str);
     return 0;
 }
-
