@@ -37,6 +37,7 @@ void display(int* ar,int n){
     }
 }
 
+//swapping numbers to sort array
 void swap(int* n1, int* n2) {
     int temp = *n1;
     *n1 = *n2;
