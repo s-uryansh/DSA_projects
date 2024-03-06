@@ -1,0 +1,510 @@
+Roll No: 2310110314
+
+Name: Suryansh Rohil
+
+Program-1: 
+#include <stdio.h>
+#include <stdlib.h>
+int top;
+void push(int* array , int data){
+    ++top;
+    array[top] = data;
+}
+
+void pop(int* array ){
+    if(top != 0){
+        printf("%d " , array[top]);
+        --top;
+    }
+}
+int main() {
+    int n;
+    scanf("%d", &n);    // input number of elements
+    
+    top = 0;
+    int* stack = (int *)malloc(n*sizeof(int));
+    int* temp = (int *)malloc(n*sizeof(int));
+    
+    //creating stack and a temp array and assigning it dynamic memory
+    stack[top] = -1;
+    
+    for(int i =0 ; i<n ; i++){
+        scanf("%d" , &temp[i]);
+        push(stack , temp[i]);
+    }
+    
+    //pushing values in stackk
+    for(int a =0; a<n ; a++){
+        pop(stack);
+    }
+    
+    //popping value out of the stack and printing them
+    free(stack);
+    free(temp);
+    
+    //Free'ing stack and temp from memory after use
+}
+
+    
+
+
+Program 2:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+typedef struct node{
+    char data;
+    struct node* next;
+}node;
+
+typedef struct Stack{
+    struct node* head;
+    unsigned int size;
+}Stack;
+
+//Stack ADT
+void print_stack(Stack* s);
+void print_stack_reverse(Stack* s);
+void push(Stack* s, char val);
+unsigned int count(Stack *s);
+void pop(Stack *s);
+char top(Stack *s);
+
+int main(){
+    Stack *s = malloc(sizeof(Stack));
+    s->head = NULL;
+    s->size = 0;
+    char temp[50];
+
+    scanf("%s",temp);
+    for(int i=0;i<50;i++){
+        if(temp[i]=='\0')
+            break;
+        push(s, temp[i]);
+    }
+    print_stack_reverse(s);
+    pop(s);
+    scanf("%s",temp);
+    for(int i=0;i<50;i++){
+        if(temp[i]=='\0')
+            break;
+        push(s, temp[i]);
+    }
+    print_stack_reverse(s);
+    
+    return 0;
+}
+void print_stack_reverse_helper(node* current);
+
+void print_stack(Stack* s) {
+    node* current = s->head;
+    while (current != NULL) {
+        printf("%c", current->data);
+        current = current->next;
+    }
+    printf("\n");
+}
+//Printing elements from STACK
+
+void print_stack_reverse(Stack* s) {
+    if (s->head == NULL) {
+        return;
+    }
+    print_stack_reverse_helper(s->head);
+    printf("\n");
+}
+//Printing same stack but in reverse order
+
+void print_stack_reverse_helper(node* current) {
+    if (current == NULL) {
+        return;
+    }
+    print_stack_reverse_helper(current->next);
+    printf("%c", current->data);
+}
+
+void push(Stack* s, char val) {
+    node* new_node = (node*)malloc(sizeof(node));
+    new_node->data = val;
+    new_node->next = s->head;
+    s->head = new_node;
+    s->size++;
+}
+//pushing elements to stack
+
+unsigned int count(Stack* s) {
+    return s->size;
+}
+//Checks elements present in stack
+
+void pop(Stack* s) {
+    if (s->head == NULL) {
+        return;
+    }
+    node* temp = s->head;
+    s->head = s->head->next;
+    free(temp);
+    s->size--;
+}
+//Popping element out of stack
+
+char top(Stack* s) {
+    if (s->head == NULL) {
+        return '\0'; // Return null character for empty stack
+    }
+    return s->head->data;
+}
+//Returns the value of the element at the top of the stack without removing it
+
+Program 3:
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include<string.h>
+typedef struct node{
+    char data;
+    struct node* next;
+}node;
+
+typedef struct Stack{
+    struct node* head;
+    unsigned int size;
+}Stack;
+
+//Stack ADT
+// Use the code from Q2 for below functions
+void print_stack(Stack* s);
+void print_stack_reverse(Stack* s);
+void push(Stack* s, char val);
+unsigned int count(Stack *s);
+void pop(Stack *s);
+char top(Stack *s);
+
+typedef struct String{
+    unsigned int size;
+    char *str;
+}String;
+
+int ParenMatch(String *par_str);
+
+int main(){
+    Stack *s = malloc(sizeof(Stack));
+    s->head = NULL;
+    s->size = 0;
+    char temp[50];
+    
+    scanf("%s",temp);
+    String *par_str = malloc(sizeof(String));
+    par_str->size = 0;
+
+    while (temp[par_str->size] != '\0') {
+        par_str->size++;
+    }
+
+    // Allocate memory for par_str->str and copy characters
+    par_str->str = malloc(par_str->size + 1);
+    for (int i = 0; i < par_str->size; i++) {
+        par_str->str[i] = temp[i];
+    }
+    par_str->str[par_str->size] = '\0';
+    int match = ParenMatch(par_str);
+    printf("%d\n", match);
+
+
+    // Free allocated memory
+    free(par_str->str);
+    free(par_str);
+    return 0;
+}
+void print_stack_reverse_helper(node* current);
+void print_stack(Stack* s) {
+    node* current = s->head;
+    while (current != NULL) {
+        printf("%c", current->data);
+        current = current->next;
+    }
+    printf("\n");
+}
+
+void print_stack_reverse(Stack* s) {
+    if (s->head == NULL) {
+        return;
+    }
+    print_stack_reverse_helper(s->head);
+    printf("\n");
+}
+
+void print_stack_reverse_helper(node* current) {
+    if (current == NULL) {
+        return;
+    }
+    print_stack_reverse_helper(current->next);
+    printf("%c", current->data);
+}
+
+void push(Stack* s, char val) {
+    node* new_node = (node*)malloc(sizeof(node));
+    new_node->data = val;
+    new_node->next = s->head;
+    s->head = new_node;
+    s->size++;
+}
+
+unsigned int count(Stack* s) {
+    return s->size;
+}
+
+void pop(Stack* s) {
+    if (s->head == NULL) {
+        return;
+    }
+    node* temp = s->head;
+    s->head = s->head->next;
+    free(temp);
+    s->size--;
+}
+
+char top(Stack* s) {
+    if (s->head == NULL) {
+        return '\0'; // Return null character for empty stack
+    }
+    return s->head->data;
+}
+
+
+
+int ParenMatch(String *par_str);
+int ParenMatch(String *par_str) {
+    Stack *s = malloc(sizeof(Stack));
+    s->head = NULL;
+    s->size = 0;
+
+    for (int i = 0; i < par_str->size; i++) {
+        if (par_str->str[i] == '(' || par_str->str[i] == '[' || par_str->str[i] == '{') {
+            push(s, par_str->str[i]);
+        } else if (par_str->str[i] == ')' || par_str->str[i] == ']' || par_str->str[i] == '}') {
+            if (count(s) == 0) {
+                free(s);
+                return 0; // Unmatched closing parenthesis
+            }
+            char top_char = top(s);
+            if ((par_str->str[i] == ')' && top_char != '(') ||
+                (par_str->str[i] == ']' && top_char != '[') ||
+                (par_str->str[i] == '}' && top_char != '{')) {
+                free(s);
+                return 0; // Mismatched opening and closing parenthesis
+            } else {
+                pop(s);
+            }
+        }
+    }
+
+    int result = count(s) == 0 ? 1 : 0;
+    free(s); //free'ing space
+    return result;
+}
+
+Program 4:
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include<ctype.h>
+#include<string.h>
+
+typedef struct node{
+    char data;
+    struct node* next;
+}node;
+
+typedef struct Stack{
+    struct node* head;
+    unsigned int size;
+}Stack;
+
+//Stack ADT
+// Use the code from Q2 for below functions
+void print_stack(Stack* s);
+void print_stack_reverse(Stack* s);
+void push(Stack* s, char val);
+unsigned int count(Stack *s);
+void pop(Stack *s);
+char top(Stack *s);
+
+    
+typedef struct String{
+    unsigned int size;
+    char *str;
+}String;
+
+
+void InfixToPostfix(String *infix, String *postfix);
+
+void print_stack_reverse_helper(node* current);
+int precedence(char op);
+
+void print_stack(Stack* s) {
+    node* current = s->head;
+    while (current != NULL) {
+        printf("%c", current->data);
+        current = current->next;
+    }
+    printf("\n");
+}
+
+void print_stack_reverse(Stack* s) {
+    if (s->head == NULL) {
+        return;
+    }
+    print_stack_reverse_helper(s->head);
+    printf("\n");
+}
+
+int precedence(char op) {
+    if (op == '+' || op == '-')
+        return 1;
+    if (op == '*' || op == '/')
+        return 2;
+    return 0;
+}
+
+
+void print_stack_reverse_helper(node* current) {
+    if (current == NULL) {
+        return;
+    }
+    print_stack_reverse_helper(current->next);
+    printf("%c", current->data);
+}
+
+void push(Stack* s, char val) {
+    node* new_node = (node*)malloc(sizeof(node));
+    new_node->data = val;
+    new_node->next = s->head;
+    s->head = new_node;
+    s->size++;
+}
+
+unsigned int count(Stack* s) {
+    return s->size;
+}
+
+void pop(Stack* s) {
+    if (s->head == NULL) {
+        return;
+    }
+    node* temp = s->head;
+    s->head = s->head->next;
+    free(temp);
+    s->size--;
+}
+
+
+void InfixToPostfix(String* infix, String* postfix) {
+    Stack* stack = malloc(sizeof(Stack));
+    stack->head = NULL;
+    stack->size = 0;
+
+    for (unsigned int i = 0; i < infix->size; ++i) {
+        char currentChar = infix->str[i];
+
+        if (isalnum(currentChar)) {
+            // Operand, append to postfix expression with space
+            postfix->str = realloc(postfix->str, postfix->size + 3);
+            postfix->str[postfix->size++] = currentChar;
+            postfix->str[postfix->size++] = ' ';
+            postfix->str[postfix->size] = '\0'; // Null terminator
+        } else if (currentChar == '(') {
+            // Opening parenthesis, push onto the stack
+            push(stack, currentChar);
+        } else if (currentChar == ')') {
+            // Closing parenthesis, pop and append to postfix until an opening parenthesis is encountered
+            while (count(stack) > 0 && top(stack) != '(') {
+                postfix->str = realloc(postfix->str, postfix->size + 3);
+                postfix->str[postfix->size++] = top(stack);
+                postfix->str[postfix->size++] = ' ';
+                postfix->str[postfix->size] = '\0'; // Null terminator
+                pop(stack);
+            }
+            // Pop the opening parenthesis
+            pop(stack);
+        } else {
+            // Operator
+            while (count(stack) > 0 && precedence(currentChar) <= precedence(top(stack))) {
+                postfix->str = realloc(postfix->str, postfix->size + 3);
+                postfix->str[postfix->size++] = top(stack);
+                postfix->str[postfix->size++] = ' ';
+                postfix->str[postfix->size] = '\0'; // Null terminator
+                pop(stack);
+            }
+            // Push the current operator onto the stack
+            push(stack, currentChar);
+        }
+    }
+
+    // Pop any remaining operators from the stack and append to postfix
+    while (count(stack) > 0) {
+        postfix->str = realloc(postfix->str, postfix->size + 3);
+        postfix->str[postfix->size++] = top(stack);
+        postfix->str[postfix->size++] = ' ';
+        postfix->str[postfix->size] = '\0'; // Null terminator
+        pop(stack);
+    }
+
+    // Free memory for the stack
+    free(stack);
+}
+
+
+int opPrecedence(char c) {
+    if (c == '+' || c == '-')
+        return 1;
+    else if (c == '*' || c == '/')
+        return 2;
+    else
+        return -1; // Invalid operator
+}
+char top(Stack* s) {
+    if (s->head == NULL) {
+        return '\0'; // Return null character for an empty stack
+    }
+    return s->head->data;
+}
+
+
+int main() {
+    Stack* s = malloc(sizeof(Stack));
+    s->head = NULL;
+    s->size = 0;
+
+    char temp[50];
+    scanf("%s", temp);
+    String* infix = malloc(sizeof(String));
+    infix->size = 0;
+    
+    infix->size = strlen(temp);
+    infix->str = strdup(temp); // Copy the input to the infix structure
+
+    String* postfix = malloc(sizeof(String));
+    postfix->size = 0;
+    postfix->str = NULL;
+
+    InfixToPostfix(infix, postfix);
+
+    if (postfix->str != NULL) {
+        printf("%s\n", postfix->str);
+        free(postfix->str); // Free the allocated memory for postfix->str
+    } else {
+        printf("Error: Unable to convert infix to postfix.\n");
+    }
+
+    // Free allocated memory
+    free(infix->str);
+    free(infix);
+    free(postfix);
+
+    return 0;
+}
+
+
