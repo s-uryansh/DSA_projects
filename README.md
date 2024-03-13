@@ -77,3 +77,10 @@ Lab7:
     Q1: Implement queue , enqueue and dequeue.
 
     Q2: Implement insertion sort.
+
+
+Lab8:
+
+    Q1: Implement selection sort.
+
+    Q2: Implement bubble sort. 
