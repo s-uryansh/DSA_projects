@@ -84,3 +84,10 @@ Lab8:
     Q1: Implement selection sort.
 
     Q2: Implement bubble sort. 
+
+
+Lab9:
+
+    Q1: Implement Merge Sort.
+
+    Q2: Implement Quick sort. 
