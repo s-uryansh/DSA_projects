@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int partition(int arr[], int low, int high);
+//Quicksort is a divide-and-conquer algorithm. 
+//It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays,
+// according to whether they are less than or greater than the pivot. 
+//For this reason, it is sometimes called partition-exchange sort
 
+int partition(int arr[], int low, int high);
 void quickSort(int arr[], int low, int high);
 void swap(int *a, int *b); // Swap function to help sorting
 void print(int arr[], int size); //printing array
