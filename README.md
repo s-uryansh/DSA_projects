@@ -90,4 +90,9 @@ Lab9:
 
     Q1: Implement Merge Sort.
 
-    Q2: Implement Quick sort. 
+    Q2: Implement Quick sort.
+
+
+Lab10:
+
+    Q1: Implement Heap Sort. 
