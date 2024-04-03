@@ -100,8 +100,8 @@ Lab10:
 
 Lab11:
 
-    Q1: Write a C program to create a * COMPLETE BINARY TREE * .
+    Q1: Write a C program to create a ** COMPLETE BINARY TREE ** .
 
-    Q2: Write a C program to create a * BINARY SEARCH TREE * .
+    Q2: Write a C program to create a ** BINARY SEARCH TREE ** .
 
-    Q3: Write a C program to compute the height of a * BINARY SEARCH TREE* .
+    Q3: Write a C program to compute the height of a ** BINARY SEARCH TREE ** .
