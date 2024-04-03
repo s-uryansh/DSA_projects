@@ -61,7 +61,7 @@ void do_heap(int *arr , int   N , int i){
     int left = 2 *i +1 ;
     int right = 2 *i +2 ;
 
-// Line 23 - 29 checking if left or right child is bigger than root
+// Line 66 - 72 checking if left or right child is bigger than root
 
     if(left < N && arr[left] > arr[big]){
         big = left;
@@ -72,7 +72,7 @@ void do_heap(int *arr , int   N , int i){
     }
 
 
-// Loop in line 34 -37 if root is not largest - swap and continue Heap Sort
+// Loop in line 77 - 80 if root is not largest - swap and continue Heap Sort
 
     if(big != i){
         swap(&arr[i] , &arr[big]);
