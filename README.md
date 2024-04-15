@@ -105,3 +105,10 @@ Lab11:
     Q2: Write a C program to create a BINARY SEARCH TREE .
 
     Q3: Write a C program to compute the height of a BINARY SEARCH TREE .
+    
+
+Lab12:
+
+    Q1: Create AVL tree while balancing property.
+
+    Q2: Create AVL tree (Once all values are inserted delete Root node and balance AVL property (-1,0,1) and show it in postOrderTraversl) 
